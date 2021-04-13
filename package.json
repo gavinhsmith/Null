@@ -1,18 +1,21 @@
 {
-  "name": "null",
+  "name": "test-web",
   "version": "0.1.0",
-  "description": ": A Shitty Blogging Site",
+  "description": "Test Web Server",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "gavinhsmith (https://gavinhsmith.tk/)",
+  "author": "Gavin Smith",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^4.1.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-handlebars": "^5.3.0"
+    "express-handlebars": "^5.3.0",
+    "markdown-it": "^12.0.4"
   }
 }

@@ -1,0 +1,14 @@
+{
+    "default": {
+        "name": "Unknown Error",
+        "desc": "The server experienced an error and could not retrieve information for it. Please try again or contact the site administrator for assistance."
+    },
+    "404": {
+        "name": "File Not Found",
+        "desc": "The file/document you were looking for was not found on the server. Please try again or contact the site administrator for assistance."
+    },
+    "500": {
+        "name": "Internal Server Error",
+        "desc": "The server experienced an internal error when trying to reach the file/document. Please try again or contact the site administrator for assistance."
+    }
+}
