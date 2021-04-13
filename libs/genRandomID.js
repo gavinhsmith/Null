@@ -1,3 +1,5 @@
+// Generate a random id string
+
 const crypto = require("crypto");
 
 function genRandomID() {

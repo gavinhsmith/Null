@@ -1,11 +1,35 @@
+// My logger
+
 const chalk = require('chalk');
 
 class Logger {
 
     static DEFAULT_CONFIG = {
         use_colors: false,
-        template: "[{TYPE}] [{TIME:HR}:{TIME:MIN}:{TIME:SEC}:{TIME:MSEC}] {DATA}",
+        template: "[{TYPE}] [{TIME:HR}:{TIME:MIN}:{TIME:SEC}.{TIME:MSEC}] {DATA}",
+        log_level_names: {
+            debug: "DEBUG",
+            info: "INFO",
+            warn: "WARN",
+            error: "ERROR",
+            fatal: "FATAL"
+        },
         log_level: 1
+    }
+
+    static ConfigJSON(log_level = 1) {
+        return {
+            use_colors: false,
+            template: `{"type":"{TYPE}","time":{"hr":{TIME:HR},"min":{TIME:MIN},"sec":{TIME:SEC},"msec":{TIME:MSEC}},"data":"{DATA}"}`,
+            log_level_names: {
+                debug: "DEBUG",
+                info: "INFO",
+                warn: "WARN",
+                error: "ERROR",
+                fatal: "FATAL"
+            },
+            log_level: log_level
+        }
     }
 
     static DEBUG_LEVEL = 0;
@@ -27,6 +51,7 @@ class Logger {
         let trueConf = {...Logger.DEFAULT_CONFIG, ...config};
         this.use_colors = trueConf.colors;
         this.log_level = trueConf.log_level;
+        this.log_level_names = trueConf.log_level_names;
         this.template = trueConf.template;
     }
 
@@ -34,7 +59,7 @@ class Logger {
         if (this.log_level <= Logger.DEBUG_LEVEL) {
             for (let i = 0; i < data.length; i++) {
                 console.debug(chalk.gray(Logger.fromTemplate({
-                    type: "DEBUG",
+                    type: this.log_level_names.debug,
                     data: data[i],
                     date: new Date()
                 }, this.template)));
@@ -46,7 +71,7 @@ class Logger {
         if (this.log_level <= Logger.INFO_LEVEL) {
             for (let i = 0; i < data.length; i++) {
                 console.info(chalk.white(Logger.fromTemplate({
-                    type: "INFO",
+                    type: this.log_level_names.info,
                     data: data[i],
                     date: new Date()
                 }, this.template)));
@@ -58,7 +83,7 @@ class Logger {
         if (this.log_level <= Logger.INFO_LEVEL) {
             for (let i = 0; i < data.length; i++) {
                 console.info(chalk.white(Logger.fromTemplate({
-                    type: "INFO",
+                    type: this.log_level_names.info,
                     data: data[i],
                     date: new Date()
                 }, this.template)));
@@ -70,7 +95,7 @@ class Logger {
         if (this.log_level <= Logger.WARN_LEVEL) {
             for (let i = 0; i < data.length; i++) {
                 console.warn(chalk.yellow(Logger.fromTemplate({
-                    type: "WARN",
+                    type: this.log_level_names.warn,
                     data: data[i],
                     date: new Date()
                 }, this.template)));
@@ -82,7 +107,7 @@ class Logger {
         if (this.log_level <= Logger.ERROR_LEVEL) {
             for (let i = 0; i < data.length; i++) {
                 console.error(chalk.redBright(Logger.fromTemplate({
-                    type: "ERROR",
+                    type: this.log_level_names.error,
                     data: data[i],
                     date: new Date()
                 }, this.template)));
@@ -94,7 +119,7 @@ class Logger {
         if (this.log_level <= Logger.ERROR_LEVEL) {
             for (let i = 0; i < data.length; i++) {
                 console.error(chalk.bgRed.white(Logger.fromTemplate({
-                    type: "FATAL",
+                    type: this.log_level_names.fatal,
                     data: data[i],
                     date: new Date()
                 }, this.template)));

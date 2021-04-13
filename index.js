@@ -25,7 +25,10 @@ app.engine(".hbs", exphbs({
     extname: ".hbs",
     defaultLayout: "main"
 }));
+
+// Config Express App
 app.set("view engine", ".hbs");
+app.set('trust proxy', true);
 
 // Express Middleware
 app.use(express.static("public"));
@@ -33,6 +36,19 @@ app.use(express.static("public"));
 // Main Endpoints
 app.get("/", function (req, res) {
     res.render("home");
+});
+
+app.get("/embed", function (req, res) {
+    res.render("home", {
+        layout: "embed",
+        doc_title: "Test",
+        user_name: "Test",
+        doc_time: "Test"
+    });
+});
+
+app.get("/new", function (req, res) {
+    res.render("new");
 });
 
 // Start Web Server
